@@ -12,5 +12,6 @@
 	
 	<typeAliases>
 		<typeAlias type="com.kh.app13.member.entity.MemberVo" alias="memberVo"/>
+		<typeAlias type="com.kh.app13.member.entity.SearchVo" alias="searchVo"/>
 	</typeAliases>
 </configuration>

@@ -1,11 +1,15 @@
 package com.kh.app13.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.kh.app13.member.entity.MemberVo;
+import com.kh.app13.member.entity.SearchVo;
 
 @Controller
 @RequestMapping("/member")
@@ -51,5 +56,26 @@ public class MemberController {
 			//로그인 실패
 			return "common/errorPage";
 		}
+	}
+	
+	@GetMapping("/search")
+	public String search(Model model) {
+		
+		//모든 회원 정보 보여주기
+		List<MemberVo> memberList = sqlSession.selectList("member.selectMemberSearch");
+		
+		model.addAttribute("list", memberList);
+		
+		return "member/search";
+	}
+	
+	@PostMapping("/search")
+	public String search(@ModelAttribute SearchVo svo, Model model) {
+		
+		List<MemberVo> memberList = sqlSession.selectList("member.selectMemberSearch", svo);
+		
+		model.addAttribute("list", memberList);
+		
+		return "member/search";
 	}
 }

@@ -25,4 +25,70 @@
 	  		AND PWD = #{pwd}
   		</if>
   	</select>
+  	
+  	<!-- 회원 조회 쿼리 -->
+  	<select id="selectMemberSearch" parameterType="searchVo" resultType="memberVo">
+  		SELECT
+		*
+		FROM MEMBER2
+		
+		<!-- 
+		choose문
+		<choose>
+			<when test="searchType == 'id'">
+				WHERE ID = #{searchValue}
+			</when>
+			<when test="searchType eq 'nick'">
+				WHERE NICK = #{searchValue}
+			</when>
+			<otherwise>
+				WHERE ID = 'XXX' 
+				AND NICK = 'XXX'
+			</otherwise>
+		</choose>
+		 -->
+		 
+		<!-- if문 ${searchType} = id, #{searchValue} = 'test1'  #{}은 쿼리로 변환될때 ''를 붙여줌 -->
+		<!-- #{vvv} '%${searchValue}%' 써주어도 됨 -->
+  		<if test="searchType != null and searchValue != null">
+  		<bind name="vvv" value=" '%' + searchValue + '%' "/>
+  		WHERE ${searchType} like #{vvv} 
+  		</if>
+  		 
+  		 <!-- 쿼리문 안에서 <, > 쓰는 법 -->
+  		 <!--
+  		<![CDATA[
+  			SELECT
+			*
+			FROM MEMBER2
+			WHERE ENROLL_DATE < SYSDATE
+  		]]>
+  		 -->
+  	</select>
+  	
+  	<!-- 
+  	resultMap 사용법
+  	<select id="selectMemberSearch" parameterType="searchVo" resultMap="abc">
+  		SELECT
+		*
+		FROM MEMBER2
+	</select>
+	
+	<resultMap id="abc" type="memberVo">
+		<result column="ID" property="id"/>
+		<result column="PWD" property="pwd"/>
+		<result column="NICK" property="nick"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+	</resultMap>
+	 -->
 </mapper>
+
+
+
+
+
+
+
+
+
+
