@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Jan 12 21:08:58 KST 2022
+spring-webmvc-4.3.25.RELEASE.jar>central=
+spring-webmvc-4.3.25.RELEASE-sources.jar>central=
+spring-webmvc-4.3.25.RELEASE.pom>central=
