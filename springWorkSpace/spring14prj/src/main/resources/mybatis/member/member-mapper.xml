@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="member">
+	<insert id="join" parameterType="memberDto">
+		INSERT INTO 
+		MEMBER2(ID, PWD, NICK, ADDR, AGE, ENROLL_DATE) 
+		VALUES(
+			#{id}, 
+			#{pwd}, 
+			#{nick}, 
+			#{addr}, 
+			#{age}, 
+			SYSDATE
+		)
+	</insert>
+	
+	<select id="login" resultType="memberDto">
+		SELECT * 
+		FROM MEMBER2
+		WHERE ID = #{id}
+		AND PWD = #{pwd}
+	</select>
+	
+	<select id="search" resultType="memberDto">
+		SELECT *
+		FROM MEMBER2
+		<if test="t != null and v != null and v != '' ">
+			<choose>
+				<when test="t == 'age'">
+					<!-- 나이검색(,를 구분자로 여러개 검색 가능) -->
+					WHERE age IN 
+					<foreach collection="v" item="a" open="(" close=")" separator=",">
+						${a}
+					</foreach>
+				</when>
+				<otherwise>
+					<bind name="pvp" value="'%' + v + '%'"/>
+					<!-- 다른검색 -->
+					WHERE ${t} like #{pvp}
+				</otherwise>
+			</choose>
+		</if>
+		
+		
+		<!-- 동적쿼리 -->
+		
+		<!-- foreach 예제 -->
+		<!-- <if test="t == 'age'">
+			WHERE age IN 
+			<foreach collection="v" item="a" open="(" close=")" separator=",">
+				${a}
+			</foreach>
+		</if> -->
+
+		<!-- <choose>
+			<when test="t neq null and v != null and v != '' ">
+				<bind name="pvp" value="'%' + v + '%'"/>
+				WHERE ${t} like #{pvp}
+			</when>
+		</choose> -->
+		
+		<!-- <if test="t != null and v != null and v != '' ">
+			WHERE ${t} = #{v}
+		</if> -->
+	</select>
+</mapper>
