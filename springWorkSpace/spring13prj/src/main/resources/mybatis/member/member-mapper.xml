@@ -65,7 +65,6 @@
   		]]>
   		 -->
   	</select>
-  	
   	<!-- 
   	resultMap 사용법
   	<select id="selectMemberSearch" parameterType="searchVo" resultMap="abc">
@@ -81,14 +80,6 @@
 		<result column="ENROLL_DATE" property="enrollDate"/>
 	</resultMap>
 	 -->
+	 
 </mapper>
-
-
-
-
-
-
-
-
-
 
