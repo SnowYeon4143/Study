@@ -70,7 +70,9 @@ public class BoardController {
 	//상세 페이지 조회
 	@GetMapping("/detail/{t}")
 	public String detail(@PathVariable String t, Model model) {		
-		BoardDto dto = ss.selectOne("board.selectOneByTitle", t);
+//		BoardDto dto = ss.selectOne("board.selectOneByTitle", t);
+		BoardDto dto = service.selectOne(t);
+		
 		
 		model.addAttribute("data", dto);
 		return "board/detail";

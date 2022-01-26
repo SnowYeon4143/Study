@@ -34,4 +34,9 @@ public class BoardServiceImpl implements BoardService{
 		return dao.delete(dto);
 	}
 
+	@Override
+	public BoardDto selectOne(String t) {
+		return dao.selectOne(t);
+	}
+
 }

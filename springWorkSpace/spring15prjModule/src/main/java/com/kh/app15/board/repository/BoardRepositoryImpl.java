@@ -37,4 +37,9 @@ public class BoardRepositoryImpl implements BoardRepository{
 		return ss.delete("board.delete", dto);
 	}
 
+	@Override
+	public BoardDto selectOne(String t) {
+		return ss.selectOne("board.selectOneByTitle", t);
+	}
+
 }

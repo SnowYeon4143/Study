@@ -12,4 +12,6 @@ public interface BoardRepository {
 	int edit(BoardDto dto);
 
 	int delete(BoardDto dto);
+
+	BoardDto selectOne(String t);
 }
