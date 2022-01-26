@@ -10,6 +10,8 @@ public class HomeController {
 	//홈 화면 보여주는 메소드 만들기
 	@RequestMapping("/")
 	public String home() {	
+		int x = 1/0;
+		
 		return "/home";
 	}
 	

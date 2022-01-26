@@ -5,6 +5,27 @@
 
 <mapper namespace="board">
 	<insert id="insert" parameterType="boardDto">
-		INSERT INTO BOARD(TITLE, CONTENT, WRITER) VALUES #{title}, #{content}, #{writer}
+		INSERT INTO BOARD(TITLE, CONTENT, WRITER) VALUES (#{title}, #{content}, #{writer})
 	</insert>
+	
+	<select id="selectAll" resultType="boardDto">
+		SELECT * FROM BOARD
+	</select>
+	
+	<select id="selectOneByTitle" parameterType="String" resultType="boardDto">
+		SELECT * FROM BOARD WHERE TITLE = #{zzz}
+	</select>
+	
+	<update id="update" parameterType="boardDto">
+		UPDATE BOARD
+		SET
+		CONTENT = #{content},
+		WRITER = #{writer}
+		WHERE TITLE = #{title}
+	</update>
+	
+	<delete id="delete" parameterType="boardDto">
+		DELETE FROM BOARD
+		WHERE TITLE = #{title}
+	</delete>
 </mapper>

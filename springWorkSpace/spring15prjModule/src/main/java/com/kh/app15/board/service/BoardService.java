@@ -1,11 +1,15 @@
 package com.kh.app15.board.service;
 
-import org.springframework.stereotype.Component;
+import java.util.List;
 
 import com.kh.app15.board.entity.BoardDto;
 
 public interface BoardService {
-	
-	/* public abstract */int enrollBoard(BoardDto dto);
-	
+	int enrollBoard(BoardDto dto) throws Exception;
+
+	List<BoardDto> selectList();
+
+	int edit(BoardDto dto);
+
+	int delete(BoardDto dto);
 }

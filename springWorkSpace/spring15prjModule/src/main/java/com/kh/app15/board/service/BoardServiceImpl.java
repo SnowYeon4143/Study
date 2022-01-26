@@ -1,6 +1,7 @@
 package com.kh.app15.board.service;
 
-import org.apache.ibatis.session.SqlSession;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,16 +12,26 @@ import com.kh.app15.board.repository.BoardRepository;
 public class BoardServiceImpl implements BoardService{
 
 	@Autowired
-	SqlSession ss;
-	
-	@Autowired
 	BoardRepository dao;
 	
 	@Override
-	public int enrollBoard(BoardDto dto) {
-		//게시글 등록 -> DAO가 할일
-		//실행결과 반환
+	public int enrollBoard(BoardDto dto) throws Exception {
 		return dao.insert(dto);
+	}
+
+	@Override
+	public List<BoardDto> selectList() {
+		return dao.selectAll();
+	}
+
+	@Override
+	public int edit(BoardDto dto) {
+		return dao.edit(dto);
+	}
+
+	@Override
+	public int delete(BoardDto dto) {
+		return dao.delete(dto);
 	}
 
 }
