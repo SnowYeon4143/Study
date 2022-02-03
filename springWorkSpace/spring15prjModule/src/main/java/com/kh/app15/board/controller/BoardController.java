@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.app15.board.entity.BoardDto;
@@ -22,10 +21,10 @@ import com.kh.app15.board.service.BoardService;
 public class BoardController {
 	
 	@Autowired
-	SqlSession ss;
+	private SqlSession ss;
 	
 	@Autowired
-	BoardService service;
+	private BoardService service;
 	
 	//게시글 작성 페이지 보여주기
 	@GetMapping("/insert")

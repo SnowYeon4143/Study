@@ -1,0 +1,8 @@
+2022-02-03 18:20:07 DEBUG: com.kh.app21.TestClass - debug ~~~ 
+2022-02-03 18:20:07 INFO : com.kh.app21.TestClass - info ~~~ 
+2022-02-03 18:20:07 WARN : com.kh.app21.TestClass - warn ~~~ 
+2022-02-03 18:20:07 ERROR: com.kh.app21.TestClass - error ~~~ 
+2022-02-03 19:05:38 DEBUG: com.kh.app21.TestClass - debug ~~~ 
+2022-02-03 19:05:38 INFO : com.kh.app21.TestClass - info ~~~ 
+2022-02-03 19:05:38 WARN : com.kh.app21.TestClass - warn ~~~ 
+2022-02-03 19:05:38 ERROR: com.kh.app21.TestClass - error ~~~ 

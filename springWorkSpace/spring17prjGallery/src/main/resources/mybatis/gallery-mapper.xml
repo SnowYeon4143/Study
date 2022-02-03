@@ -26,4 +26,10 @@
 		)
 	</insert>
 	
+	<select id="getByNo" parameterType="int" resultType="gallery">
+		SELECT * 
+		FROM GALLERY 
+		WHERE NO = #{nozz}
+	</select>
+	
 </mapper>

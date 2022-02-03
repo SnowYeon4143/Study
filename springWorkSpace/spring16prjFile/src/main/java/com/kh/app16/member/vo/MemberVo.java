@@ -36,12 +36,12 @@ public class MemberVo {
 		this.profileList = profileList;
 	}
 	
-	public boolean isFileOk() {
-		if(profileList.get(0).isEmpty() || profileList.size() < 1 || profileList != null || profileList.get(0) != null) {
-			return false;
-		}
-		return true;
-	}
+//	public boolean isFileOk() {
+//		if(profileList.get(0).isEmpty() || profileList.size() < 1 || profileList != null || profileList.get(0) != null) {
+//			return false;
+//		}
+//		return true;
+//	}
 	
 	@Override
 	public String toString() {

@@ -9,4 +9,7 @@ public interface GalleryDao {
 	
 	//DB에 VO 저장
 	int insert(GalleryVo vo);
+
+	//no를 기준으로 row하나 가져오기
+	GalleryVo getGallery(int no);
 }
