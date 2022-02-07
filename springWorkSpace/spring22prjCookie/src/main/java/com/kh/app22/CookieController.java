@@ -23,6 +23,7 @@ public class CookieController {
 		
 		//쿠키 준비
 		Cookie c = new Cookie("k01", "v01");
+		c.setMaxAge(60 * 60 * 24); //24시간 동안 유지
 		c.setPath("/");
 		
 		//쿠키 전달

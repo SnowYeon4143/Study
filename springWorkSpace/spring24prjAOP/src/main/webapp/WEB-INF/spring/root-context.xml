@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 
+	필터는 여기에 등록
+	<bean id="myFilter" class="com.kh.app19.filter.MyFilter">
+		
+	</bean>
+	 -->
+	 
+	 <!-- DB 설정 관련 -->
+	
+	<!-- spring-jdbc -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+		<property name="username" value="KH"/>
+		<property name="password" value="KH"/>
+	</bean>
+	
+	<!-- dbcp : database connection pool -->
+	<bean id="dbcpSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+		<property name="username" value="KH"/>
+		<property name="password" value="KH"/>
+		
+		<property name="maxTotal" value="20"/>
+		<property name="maxIdle" value="10"/>
+		<property name="maxWaitMillis" value="3000"/>
+	</bean>
+	
+	<!-- spring jdbc > JdbcTemplate -->
+	<bean id="jdpcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- SqlSessionFactoryBean -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dbcpSource"/>
+		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:/mybatis/**/*-mapper.xml"/>
+	</bean>
+	
+	<!-- SqlSessionTemplate -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- spring security -->
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	</bean>
+	
+	<!-- file -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="maxUploadSize" value="10000000"/><!-- 1024 * 1024 * 10 총 업로드 크기 10MB -->
+		<property name="maxUploadSizePerFile" value="5000000"/><!-- 파일 하나당 크기 5MB -->
+	</bean>
+	 
+	 <!-- @Aspect 활성화 -->
+	 <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	 
+	 <context:component-scan base-package="com.kh.app24" use-default-filters="false">
+	 	<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+	 </context:component-scan>
+</beans>
