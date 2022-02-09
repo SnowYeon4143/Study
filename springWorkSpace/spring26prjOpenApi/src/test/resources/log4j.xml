@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- <Appender> 3가지 -->
+	<!-- ConsoleAppender 콘솔에 씀 -->
+	<!-- FileAppender 파일에 씀 -->
+	<!-- DailyRollingFileAppender 날짜별로 파일에 씀 -->
+	
+	<!-- Appenders -->
+	<!-- ConsoleAppender -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			 <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p: %c - %m %n" />
+		</layout>
+	</appender>
+	
+	<!-- FileAppender xml -->
+	<appender name="filexml" class="org.apache.log4j.FileAppender">
+		<param name="file" value="myLogFile.xml" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.xml.XMLLayout">
+		</layout>
+	</appender>
+	
+	<!-- FileAppender txt -->
+	<appender name="filetxt" class="org.apache.log4j.FileAppender">
+		<param name="file" value="myLogFile.txt" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			 <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p: %c - %m %n" />
+		</layout>
+	</appender>
+	
+	<!-- Daily Rolling FileAppender txt -->
+	<appender name="filetxtday" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="C:/dev/logs/dailyLog.txt" />
+		<param name="append" value="true" />
+		<param name="DatePattern" value="yyyy-MM-dd" />		
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p: %c - %m %n" />
+		</layout>
+	</appender>
+	
+	<!-- Application Loggers -->
+	<logger name="com.kh.app26" >
+		<level value="debug" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<!-- 
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>	
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+ 	-->
+	<!-- Root Logger -->
+	<root>
+		<priority value="info" />
+		<appender-ref ref="filetxt" />
+		<appender-ref ref="console" />
+	</root>
+	
+</log4j:configuration>
