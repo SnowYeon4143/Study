@@ -81,7 +81,7 @@ public class MyAspect {
 	 */
 	
 	//@Around 메소드 구조
-//	@Around("execution(public void com.kh.app24.aop.dao.MyDao.test())")
+	@Around("execution(public void com.kh.app24.aop.dao.MyDao.test())")
 //	@Around("execution(void com.kh.app24.aop.dao.MyDao.test())") // 퍼블릭 안써도 됨
 //	@Around("execution(* com.kh.app24.aop.dao.MyDao.test())") //리턴타입 * : 상관없다, java.lang.String : String
 //	@Around("execution(* com.kh.app24.aop.dao.MyDao.test(*))") //매개변수의 *은 1개 이상
@@ -93,7 +93,7 @@ public class MyAspect {
 //	@Around("execution(* com.kh.app24.aop.dao.My*.*(..))") //클래스 이름 표현식으로 처리 가능
 //	@Around("execution(* com.kh.app24.aop.dao.*Dao.*(..))") //클래스 이름 표현식으로 처리 가능
 //	@Around("execution(* com.kh.app24.aop.dao.*.*(..))") //클래스 이름 표현식으로 처리 가능
-	@Around("execution(* com.kh.app24..*.*(..))") //패키지 이름 표현식으로 처리 가능
+//	@Around("execution(* com.kh.app24..*.*(..))") //패키지 이름 표현식으로 처리 가능
 	public Object MyAdvice04(ProceedingJoinPoint jp) throws Throwable {
 		
 		System.out.println("elapse check start ==========");

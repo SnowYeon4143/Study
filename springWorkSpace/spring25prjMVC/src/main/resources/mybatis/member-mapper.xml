@@ -6,8 +6,20 @@
 <mapper namespace="member">
 	<insert id="join" parameterType="member">
 		INSERT INTO MEMBER2
-		(ID, PWD, NICK)
+		(USER_ID, USER_PWD, USER_NICK)
 		VALUES
 		(#{id}, #{pwd}, #{nick})
 	</insert>
+	
+	<select id="selectMemberById" parameterType="string" resultMap="tempMember">
+		SELECT * 
+		FROM MEMBER2
+		WHERE USER_ID = #{abc}
+	</select>
+	
+	<resultMap id="tempMember" type="member">
+		<result column="USER_ID" property="id"/>
+		<result column="USER_PWD" property="pwd"/>
+		<result column="USER_NICK" property="nick"/>
+	</resultMap>
 </mapper>
