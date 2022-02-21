@@ -22,4 +22,19 @@ public class MemberDaoImpl implements MemberDao{
 		return ss.insert("member.insertMember", dto);
 	}
 
+	@Override
+	public void uploadProfile(MemberDto dto) throws Exception{
+		ss.insert("member.insertProfile", dto);
+	}
+
+	@Override
+	public MemberDto getMember(MemberDto dto) throws Exception {
+		return ss.selectOne("member.getMember", dto);
+	}
+
+	@Override
+	public int updateMember(MemberDto dto) throws Exception {
+		return ss.update("member.updateMember", dto);
+	}
+
 }

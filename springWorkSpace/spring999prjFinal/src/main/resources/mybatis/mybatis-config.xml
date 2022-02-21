@@ -10,5 +10,6 @@
 	
 	<typeAliases>
 		<typeAlias type="com.kh.app999.member.entity.MemberDto" alias="memberDto"/>
+		<typeAlias type="com.kh.app999.notice.vo.NoticeVo" alias="noticeVo"/>
 	</typeAliases>
 </configuration>

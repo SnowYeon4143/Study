@@ -18,3 +18,19 @@
 #div-header table tr:nth-child(2){
 	height:50px;
 }
+
+#div-main{
+	width:80vw;
+	margin: auto;
+}
+
+#div-header table tr td{
+	height: 100%;
+	width: 100px;
+}
+
+#div-header table img {
+	height: 100px;
+	width: 100%;
+}
+

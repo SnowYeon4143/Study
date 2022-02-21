@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="notice">
+	<insert id="insertNotice">
+		INSERT INTO NOTICE
+		(
+			NO
+			,TITLE
+			, CONTENT
+			, WRITER
+		)
+		VALUES 
+		(
+			NOTICE_SEQ.NEXTVAL
+			, #{title}
+			, #{content}
+			, #{writer}
+		)	
+	</insert>
+	
+	<select id="getNoticeList" resultType="noticeVo">
+		SELECT * FROM
+		(
+			SELECT ROWNUM RN, T.* 
+			FROM
+			(
+				SELECT *
+				FROM NOTICE N
+				JOIN MEMBER M
+				ON N.WRITER = M.USER_NO
+				WHERE N.DEL = 'N'
+				ORDER BY N.NO DESC
+			) T
+		)
+		WHERE RN BETWEEN #{startRow} AND #{endRow}
+
+	</select>
+	
+	<update id="deleteNotice">
+		UPDATE NOTICE
+		SET
+			DEL = 'Y'
+		WHERE NO IN 
+		<foreach collection="array" item="n" open="(" close=")" separator=",">
+			${n}
+		</foreach>
+	</update>
+	
+	<select id="getNoticeCnt" resultType="int">
+		SELECT COUNT(NO)
+		FROM NOTICE
+		WHERE DEL = 'N'
+	</select>
+</mapper>

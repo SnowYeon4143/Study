@@ -9,15 +9,14 @@
 	</select>
 	
 	<insert id="insertMember" parameterType="memberDto">
-		INSERT INTO MEMBER2
+		INSERT INTO MEMBER
 		(
 			 USER_NO 
 		    ,USER_ID
 		    ,USER_PWD
 		    ,USER_NICK 
 		    ,USER_AGE 
-		    ,USER_GENDER 
-		    ,USER_PROFILE 
+		    ,USER_GENDER
 		)
 		VALUES
 		(
@@ -26,8 +25,49 @@
 			#{userPwd},
 			#{userNick},
 			#{userAge},
-			#{userGender},
-			#{userProfile}
+			#{userGender}
 		)
 	</insert>
+	
+	<insert id="insertProfile" parameterType="memberDto">
+		INSERT INTO MEMBER_PROFILE
+		(
+			FILE_NO,
+			USER_NO,
+			CHANGE_NAME
+		)
+		VALUES
+		(
+			MEMBER_PROFILE_SEQ.NEXTVAL,
+			#{userNo},
+			#{changeName}
+		)
+	</insert>
+	
+	<select id="getMember" parameterType="memberDto" resultType="memberDto">
+		SELECT *
+		FROM MEMBER M
+		JOIN MEMBER_PROFILE P
+		ON M.USER_NO = P.USER_NO
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	<update id="updateMember" parameterType="memberDto">
+		UPDATE MEMBER
+		SET
+			USER_NO = #{userNo}
+			<if test="userPwd != null and userPwd != ''">
+		    ,USER_PWD = #{userPwd}
+		    </if>
+		    <if test="userNick != null and userNick != ''">
+		    ,USER_NICK = #{userNick}
+		    </if>
+		    <if test="userAge != null and userAge != ''">
+		    ,USER_AGE = #{userAge}
+		    </if>
+		    <if test="userGender != null and userGender != ''">
+		    ,USER_GENDER = #{userGender}
+		    </if>
+		WHERE USER_NO = #{userNo}
+	</update>
 </mapper>

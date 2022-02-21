@@ -26,7 +26,7 @@
 	
 	<!-- FileAppender txt -->
 	<appender name="filetxt" class="org.apache.log4j.FileAppender">
-		<param name="file" value="myLogFile.txt" />
+		<param name="file" value="C:/dev/logs/myLogFile.txt" />
 		<param name="append" value="true" />
 		<layout class="org.apache.log4j.PatternLayout">
 			 <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p: %c - %m %n" />
@@ -45,7 +45,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.kh.app999">
-		<level value="debug" />
+		<level value="warn" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
@@ -68,7 +68,7 @@
  	-->
 	<!-- Root Logger -->
 	<root>
-		<priority value="info" />
+		<priority value="warn" />
 		<appender-ref ref="filetxt" />
 		<appender-ref ref="console" />
 	</root>
