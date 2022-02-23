@@ -10,7 +10,7 @@ import com.kh.app999.member.entity.MemberDto;
 public class MemberDaoImpl implements MemberDao{
 
 	@Autowired
-	SqlSession ss;
+	private SqlSession ss;
 	
 	@Override
 	public int getMemberSeq() throws Exception {
